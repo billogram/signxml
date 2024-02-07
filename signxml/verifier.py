@@ -17,7 +17,7 @@ from .algorithms import (
     DigestAlgorithm,
     SignatureConstructionMethod,
     SignatureMethod,
-    digest_algorithm_implementations,
+    digest_algorithm_implementations, TransformAlgorithm,
 )
 from .exceptions import InvalidCertificate, InvalidDigest, InvalidInput, InvalidSignature
 from .processor import XMLSignatureProcessor
@@ -196,8 +196,13 @@ class XMLVerifier(XMLSignatureProcessor):
             transforms = self._findall(transforms_node, "Transform")
 
         for transform in transforms:
-            if transform.get("Algorithm") == SignatureConstructionMethod.enveloped.value:
+            algorithm = transform.get("Algorithm")
+            if algorithm == SignatureConstructionMethod.enveloped.value:
                 _remove_sig(signature, idempotent=True)
+            if algorithm == TransformAlgorithm.dsig_filter2.value:
+                transform_xpath = self._find(transform, f"{namespaces.dsig_filter2}:XPath")
+                if transform_xpath and transform_xpath.get("Filter") == "subtract" and signature == payload.xpath(transform_xpath.text, namespaces=namespaces)[0]:
+                    _remove_sig(signature, idempotent=True)
 
         for transform in transforms:
             if transform.get("Algorithm") == "http://www.w3.org/2000/09/xmldsig#base64":
