@@ -201,7 +201,7 @@ class XMLVerifier(XMLSignatureProcessor):
                 _remove_sig(signature, idempotent=True)
             if algorithm == TransformAlgorithm.dsig_filter2.value:
                 transform_xpath = self._find(transform, f"{namespaces.dsig_filter2}:XPath")
-                if transform_xpath and transform_xpath.get("Filter") == "subtract" and signature == payload.xpath(transform_xpath.text, namespaces=namespaces)[0]:
+                if transform_xpath is not None and transform_xpath.get("Filter") == "subtract" and signature == payload.xpath(transform_xpath.text, namespaces=namespaces)[0]:
                     _remove_sig(signature, idempotent=True)
 
         for transform in transforms:
