@@ -162,7 +162,6 @@ class TransformAlgorithm(Enum):
     dsig_filter2 = "http://www.w3.org/2002/06/xmldsig-filter2"
 
 
-
 digest_algorithm_implementations: Dict[Union[DigestAlgorithm, SignatureMethod], Type[hashes.HashAlgorithm]] = {
     DigestAlgorithm.SHA1: hashes.SHA1,
     DigestAlgorithm.SHA224: hashes.SHA224,
