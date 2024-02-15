@@ -17,7 +17,8 @@ from .algorithms import (
     DigestAlgorithm,
     SignatureConstructionMethod,
     SignatureMethod,
-    digest_algorithm_implementations, TransformAlgorithm,
+    TransformAlgorithm,
+    digest_algorithm_implementations,
 )
 from .exceptions import InvalidCertificate, InvalidDigest, InvalidInput, InvalidSignature
 from .processor import XMLSignatureProcessor
