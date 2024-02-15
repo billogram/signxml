@@ -30,6 +30,7 @@ namespaces = Namespace(
     ds="http://www.w3.org/2000/09/xmldsig#",
     dsig11="http://www.w3.org/2009/xmldsig11#",
     dsig2="http://www.w3.org/2010/xmldsig2#",
+    dsig_filter2="http://www.w3.org/2002/06/xmldsig-filter2",
     ec="http://www.w3.org/2001/10/xml-exc-c14n#",
     dsig_more="http://www.w3.org/2001/04/xmldsig-more#",
     xenc="http://www.w3.org/2001/04/xmlenc#",

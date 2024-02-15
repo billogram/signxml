@@ -97,6 +97,15 @@ class TestVerifyXML(unittest.TestCase, LoadExampleKeys):
             expect_references=2,
         )
 
+    def test_example_xpath_filter(self):
+        with open(os.path.join(os.path.dirname(__file__), "example.pem")) as fh:
+            cert = fh.read()
+        example_file = os.path.join(os.path.dirname(__file__), "example-xpath-filter.xml")
+        XMLVerifier().verify(
+            data=etree.parse(example_file),
+            x509_cert=cert,
+        )
+
 
 class TestSignXML(unittest.TestCase, LoadExampleKeys):
     def setUp(self):
