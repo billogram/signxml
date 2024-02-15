@@ -201,7 +201,7 @@ class XMLVerifier(XMLSignatureProcessor):
             if algorithm == SignatureConstructionMethod.enveloped.value:
                 _remove_sig(signature, idempotent=True)
             if algorithm == TransformAlgorithm.dsig_filter2.value:
-                transform_xpath = self._find(transform, f"dsig_filter2:XPath")
+                transform_xpath = self._find(transform, "dsig_filter2:XPath")
                 if transform_xpath is not None and transform_xpath.get("Filter") == "subtract":
                     elements = payload.xpath(transform_xpath.text, namespaces=namespaces)
                     for element in elements:
